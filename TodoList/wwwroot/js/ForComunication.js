@@ -1,9 +1,9 @@
-﻿$("#but1").click(function () {
-    $.ajax({
-        url: "add.php",
-        data: "x=4&y=5",
-        success: function (result) {
-            $("#par1").html(result)
-        }
-    });
+﻿$(function () {
+	$.getJSON("/api/People", null, fet);
+});
+$(function () {
+    $('#but1').bind('click', function () {
+	    var fet = {};
+	    $.getJSON("/api/People", null, fet);
+	});
 });

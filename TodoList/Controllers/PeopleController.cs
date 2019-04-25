@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
-using DAL.TodoList;
+﻿using AutoMapper;
 using DAL.TodoList.Models;
 using DAL.TodoList.Repository;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using TodoList.ViewModels;
 
 namespace TodoList.Controllers
@@ -20,8 +17,14 @@ namespace TodoList.Controllers
             _repo = repository;
             _mapper = mapper;
         }
+
         [HttpGet]
-        public IActionResult GetAll() => Ok(_repo.GetPeoples());
+        public IActionResult GetAll()
+        {
+            var resFromDb = _repo.GetPeoples().ToList();
+            var result = resFromDb.Select(People => _mapper.Map<PeopleViewModel>(People));
+            return Ok(result);
+        }
 
         [HttpGet("{id}")]
         public IActionResult GetOne(int id) =>  Ok(_repo.GetPeople(id));
