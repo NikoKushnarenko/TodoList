@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "defaultProvider": "jsdelivr",
+  "libraries": [
+    {
+      "library": "bootstrap@4.3.1",
+      "destination": "wwwroot/disc/bootstrap/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "jquery@3.4.0",
+      "destination": "wwwroot/disc/jquery/"
+    }
+  ]
+}

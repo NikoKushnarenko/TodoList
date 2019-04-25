@@ -49,7 +49,7 @@ namespace TodoList
             {
                 app.UseHsts();
             }
-
+            app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
             app.UseHttpsRedirection();
             app.UseMvc();

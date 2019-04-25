@@ -41,6 +41,7 @@ namespace DAL.TodoList.Repository
         {
             if (todoTask.PeopleId != 0)
             {
+                todoTask.People = GetPeople(todoTask.PeopleId);
                 _context.Tasks.Add(todoTask);
                 _context.SaveChanges();
             }

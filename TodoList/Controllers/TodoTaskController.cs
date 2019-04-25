@@ -28,15 +28,10 @@ namespace TodoList.Controllers
             return Ok(_repo.GetTasks(id));
         }
         [HttpPost]
-        public IActionResult AddTask([FromBody] TodoTaskViewModel task)
+        public void AddTask([FromBody] TodoTaskViewModel task)
         {
-            if (task.PeopleId != 0)
-            {
-                TodoTask res = _mapper.Map<TodoTask>(task);
-                return Ok(res);
-            }
-
-            return NotFound();
+            TodoTask model = _mapper.Map<TodoTask>(task);
+            _repo.AddTask(model);
         }
     }
 }
