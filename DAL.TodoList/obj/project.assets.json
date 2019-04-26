@@ -3139,11 +3139,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MKushnarenko\\Desktop\\TodoListServer\\DAL.TodoList\\DAL.TodoList.csproj",
+      "projectUniqueName": "C:\\Users\\MKushnarenko\\source\\repos\\TodoList\\DAL.TodoList\\DAL.TodoList.csproj",
       "projectName": "DAL.TodoList",
-      "projectPath": "C:\\Users\\MKushnarenko\\Desktop\\TodoListServer\\DAL.TodoList\\DAL.TodoList.csproj",
+      "projectPath": "C:\\Users\\MKushnarenko\\source\\repos\\TodoList\\DAL.TodoList\\DAL.TodoList.csproj",
       "packagesPath": "C:\\Users\\MKushnarenko\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MKushnarenko\\Desktop\\TodoListServer\\DAL.TodoList\\obj\\",
+      "outputPath": "C:\\Users\\MKushnarenko\\source\\repos\\TodoList\\DAL.TodoList\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
