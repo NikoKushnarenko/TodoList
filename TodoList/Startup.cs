@@ -30,9 +30,9 @@ namespace TodoList
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            string conect = Configuration.GetSection("ConnectionStrings")?.GetValue<string>("DefaultConnection");
+            //string conect = Configuration.GetSection("ConnectionStrings")?.GetValue<string>("DefaultConnection");
 
-            services.AddDbContext<TodoListContext>(option => option.UseSqlServer(conect));
+            services.AddDbContext<TodoListContext>();
             services.AddScoped<IRepository, BaseRepository>();
             services.AddAutoMapper();
             services.AddMvc();

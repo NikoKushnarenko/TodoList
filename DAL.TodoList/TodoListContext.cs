@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DAL.TodoList.ModelConfiguration;
+using Microsoft.Extensions.Configuration;
 
 namespace DAL.TodoList
 {
@@ -11,10 +13,24 @@ namespace DAL.TodoList
     {
         public DbSet<People> Peoples { get; set; }
         public DbSet<TodoTask> Tasks { get; set; }
-        public TodoListContext(DbContextOptions<TodoListContext> options)
+        private IConfiguration _configuration;
+        public TodoListContext(IConfiguration configuration, DbContextOptions<TodoListContext> options)
              : base(options)
         {
+            _configuration = configuration;
             Database.EnsureCreated();
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new PeopleConfiguration());
+            modelBuilder.ApplyConfiguration(new TodoTaskConfiguration());
         }
     }
 }
