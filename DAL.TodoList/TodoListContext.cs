@@ -14,11 +14,9 @@ namespace DAL.TodoList
         public DbSet<People> Peoples { get; set; }
         public DbSet<TodoTask> Tasks { get; set; }
         private IConfiguration _configuration;
-        public TodoListContext(IConfiguration configuration, DbContextOptions<TodoListContext> options)
-             : base(options)
+        public TodoListContext(IConfiguration configuration)
         {
             _configuration = configuration;
-            Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

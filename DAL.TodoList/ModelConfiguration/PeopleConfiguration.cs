@@ -11,11 +11,10 @@ namespace DAL.TodoList.ModelConfiguration
     {
         public void Configure(EntityTypeBuilder<People> builder)
         {
-            builder.ToTable("People", "TodoList");
-
-            builder.HasKey(people => people.Id);
-
+            builder.ToTable("People").HasKey(x => x.Id);
+            builder.Property(x => x.Id).ValueGeneratedOnAdd().IsRequired();
             builder.Property(people => people.FullName).HasColumnType("nvarchar(50)").IsRequired();
+
         }
     }
 }

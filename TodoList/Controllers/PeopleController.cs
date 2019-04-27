@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.ComponentModel.DataAnnotations;
+using AutoMapper;
 using DAL.TodoList.Models;
 using DAL.TodoList.Repository;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +9,7 @@ using TodoList.ViewModels;
 namespace TodoList.Controllers
 {
     [Route("api/[controller]")]
-    public class PeopleController : ControllerBase
+    public class PeopleController : Controller
     {
         private IRepository _repo;
         private IMapper _mapper;
@@ -27,7 +28,14 @@ namespace TodoList.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetOne(int id) =>  Ok(_repo.GetPeople(id));
+        public IActionResult GetOne([Required]int id)
+        {
+            if (id <= 0)
+            {
+                return BadRequest("Invalid id param");
+            }
+            return Ok(id);
+        } 
         [HttpPost]
         public IActionResult Add([FromBody]PeopleViewModel people)
         {

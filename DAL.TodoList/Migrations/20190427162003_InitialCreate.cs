@@ -7,12 +7,8 @@ namespace DAL.TodoList.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.EnsureSchema(
-                name: "TodoList");
-
             migrationBuilder.CreateTable(
                 name: "People",
-                schema: "TodoList",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -26,12 +22,11 @@ namespace DAL.TodoList.Migrations
 
             migrationBuilder.CreateTable(
                 name: "TodoTask",
-                schema: "TodoList",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    nvarchar200 = table.Column<string>(name: "nvarchar(200)", nullable: false),
+                    Description = table.Column<string>(nullable: false),
                     IsComplite = table.Column<bool>(nullable: false),
                     PeopleId = table.Column<int>(nullable: false)
                 },
@@ -41,7 +36,6 @@ namespace DAL.TodoList.Migrations
                     table.ForeignKey(
                         name: "FK_TodoTask_People_PeopleId",
                         column: x => x.PeopleId,
-                        principalSchema: "TodoList",
                         principalTable: "People",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -49,7 +43,6 @@ namespace DAL.TodoList.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_TodoTask_PeopleId",
-                schema: "TodoList",
                 table: "TodoTask",
                 column: "PeopleId");
         }
@@ -57,12 +50,10 @@ namespace DAL.TodoList.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "TodoTask",
-                schema: "TodoList");
+                name: "TodoTask");
 
             migrationBuilder.DropTable(
-                name: "People",
-                schema: "TodoList");
+                name: "People");
         }
     }
 }

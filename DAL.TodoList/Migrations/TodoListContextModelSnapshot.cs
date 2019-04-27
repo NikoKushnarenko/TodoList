@@ -30,7 +30,7 @@ namespace DAL.TodoList.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("People","TodoList");
+                    b.ToTable("People");
                 });
 
             modelBuilder.Entity("DAL.TodoList.Models.TodoTask", b =>
@@ -40,8 +40,7 @@ namespace DAL.TodoList.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnName("nvarchar(200)");
+                        .IsRequired();
 
                     b.Property<bool>("IsComplite");
 
@@ -51,7 +50,7 @@ namespace DAL.TodoList.Migrations
 
                     b.HasIndex("PeopleId");
 
-                    b.ToTable("TodoTask","TodoList");
+                    b.ToTable("TodoTask");
                 });
 
             modelBuilder.Entity("DAL.TodoList.Models.TodoTask", b =>

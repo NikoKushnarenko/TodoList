@@ -12,13 +12,13 @@ namespace DAL.TodoList.ModelConfiguration
     {
         public void Configure(EntityTypeBuilder<TodoTask> builder)
         {
-            builder.ToTable("TodoTask", "TodoList");
-            builder.HasKey(task => task.Id);
-
+            builder.ToTable("TodoTask").HasKey(x => x.Id);
+            builder.Property(x => x.Id).ValueGeneratedOnAdd().IsRequired();
             builder.Property(p => p.IsComplite).IsRequired();
-            builder.Property(p => p.Description).HasColumnName("nvarchar(200)").IsRequired();
+            builder.Property(p => p.Description).IsRequired();
 
             builder.HasOne<People>(people => people.People).WithMany(tesk => tesk.Tasks).HasForeignKey(people => people.PeopleId);
+
         }
     }
 }
