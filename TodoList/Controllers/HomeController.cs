@@ -10,7 +10,7 @@ namespace TodoList.Controllers
     {
         public ViewResult Index()
         {
-            return View();
+            return View("~/wwwroot/Site/Index.html");
         }
     }
 }
