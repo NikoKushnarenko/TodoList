@@ -8,7 +8,8 @@ namespace DAL.TodoList.Repository
 {
     public interface IRepository
     {
-        People GetPeople(int id);
+        People FindPeopleById(int id);
+        Task<People> FindPeopleByIdAsync(int id);
         IEnumerable<People> GetPeoples();
         IEnumerable<TodoTask> GetTasks(int id);
         void AddPeople(People peole);

@@ -28,15 +28,16 @@ namespace TodoList.Controllers
             return Ok(_repo.GetTasks(id));
         }
         [HttpPost]
-        public async void AddTask([FromBody] TodoTaskViewModel task)
+        public async Task<IActionResult> AddTask([FromBody] TodoTaskViewModel task)
         {
-            //var people = await _repo.FindPeopleById(task.PeopleId).FirstOrDefaultAsync();
-            //if (people == null)
-            //{
-            //    return BadRequest("Cannot find people by id");
-            //}
+            var people = await _repo.FindPeopleByIdAsync(task.PeopleId);
+            if (people == null)
+            {
+                return BadRequest("Cannot find people by id");
+            }
             TodoTask model = _mapper.Map<TodoTask>(task);
             _repo.AddTask(model);
+            return Ok();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DAL.TodoList.Models;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace DAL.TodoList.Repository
@@ -20,19 +21,23 @@ namespace DAL.TodoList.Repository
             return _context.Peoples;
         }
 
-        public People GetPeople(int id)
+        public People FindPeopleById(int id)
         {
-            return _context.Peoples.Where(people => people.Id == id).SingleOrDefault();
+            return _context.Peoples.SingleOrDefault(people => people.Id == id);
+        }
+        public async Task<People> FindPeopleByIdAsync(int id)
+        {
+            return await _context.Peoples.SingleOrDefaultAsync(people => people.Id == id);
         }
 
         public IEnumerable<TodoTask> GetTasks(int id)
         {
-            return _context.Tasks.Where(task => task.People.Id == id);
+            return _context.Tasks.Include(task => task.People)
+                 .Where(task => task.PeopleId == id).ToList();
         }
 
         public void AddPeople(People peole)
         {
-
             _context.Peoples.Add(peole);
             _context.SaveChanges();
         }
@@ -41,7 +46,7 @@ namespace DAL.TodoList.Repository
         {
             if (todoTask.PeopleId != 0)
             {
-                todoTask.People = GetPeople(todoTask.PeopleId);
+                todoTask.People = FindPeopleById(todoTask.PeopleId);
                 _context.Tasks.Add(todoTask);
                 _context.SaveChanges();
             }
