@@ -1,39 +1,32 @@
 ﻿$(function () {
-    $.getJSON("/api/TodoTask", { id: 1 }, function (data, textStatus) {
-	    var div = document.createElement('div');
-	    var p = document.createElement('lable');
-	    p.innerText = "123";
-	    var butEdit = document.createElement('button');
-	    butEdit.innerText = "Edit";
-	    var butDelete = document.createElement('button');
-	    butDelete.innerText = "Delete";
-	    var idPeople = document.createElement('input');
+    $.getJSON("/api/TodoTask/1", null, function (data) {
+	    for (var i = 0; i < data.length; i++) {
+            var divrow = document.createElement('div');
+            var divColomnOne = document.createElement('div');
+            var divColomnTwo = document.createElement('div');
 
-	    $(div).append(p);
-	    $(div).append(butEdit);
-	    $(div).append(butDelete);
-	    $('#TaskContent').append(div);
+            divrow.classList.add("row");
+            divColomnOne.classList.add("col-xs-12");
+            divColomnOne.classList.add("col-sm-6");
+            divColomnOne.classList.add("col-md-8");
+            divColomnTwo.classList.add("col-xs-6");
+            divColomnTwo.classList.add("col-md-4");
+
+		    var lable = document.createElement('lable');
+		    lable.innerText = data[i].desc;
+		    var butEdit = document.createElement('button');
+		    butEdit.innerText = "Edit";
+		    var butDelete = document.createElement('button');
+            butDelete.innerText = "Delete";
+
+            $(divrow).append(divColomnOne);
+            $(divrow).append(divColomnTwo);
+
+            $(divColomnOne).append(lable);
+            $(divColomnTwo).append(butEdit);
+            $(divColomnTwo).append(butDelete);
+            $('#TaskContent').append(divrow);
+	    }
+	    
     });
 });
-$(function () {
-    $('#but1').bind('click', function () {
-	    var fet = {};
-        $.getJSON("/api/people", { id: 1 }, function(data, textStatus) {
-	        alert(data);
-        });
-	});
-});
-
-//var div = document.createElement('div');
-//var p = document.createElement('lable');
-//p.innerText = "123";
-//var butEdit = document.createElement('button');
-//butEdit.innerText = "Edit";
-//var butDelete = document.createElement('button');
-//butDelete.innerText = "Delete";
-//var idPeople = document.createElement('input');
-
-//$(div).append(p);
-//$(div).append(butEdit);
-//$(div).append(butDelete);
-//$('#TaskContent').append(div);

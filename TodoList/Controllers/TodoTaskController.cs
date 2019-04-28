@@ -25,7 +25,9 @@ namespace TodoList.Controllers
         [HttpGet("{id}")]
         public IActionResult GetAll(int id)
         {
-            return Ok(_repo.GetTasks(id));
+            IEnumerable<TodoTask> alltask = _repo.GetTasks(id);
+            List<TodoTaskViewModel> res = alltask.Select(task => _mapper.Map<TodoTaskViewModel>(task)).ToList();
+            return Ok(res);
         }
         [HttpPost]
         public async Task<IActionResult> AddTask([FromBody] TodoTaskViewModel task)
