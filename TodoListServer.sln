@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.TodoList", "DAL.TodoList\DAL.TodoList.csproj", "{50F31730-3F5D-4829-B2EA-8898C25860CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL.TodoList", "DAL.TodoList\DAL.TodoList.csproj", "{50F31730-3F5D-4829-B2EA-8898C25860CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoList", "TodoList\TodoList.csproj", "{A1E5CE6B-AD9D-41AB-9A7D-20BB210A096D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList", "TodoList\TodoList.csproj", "{A1E5CE6B-AD9D-41AB-9A7D-20BB210A096D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
