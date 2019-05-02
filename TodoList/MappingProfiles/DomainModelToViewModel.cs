@@ -8,11 +8,12 @@ using TodoList.ViewModels;
 
 namespace TodoList.MappingProfiles
 {
-    public class PeopleViewModelToDomainModel : Profile
+    public class DomainModelToViewModel : Profile
     {
-        public PeopleViewModelToDomainModel()
+        public DomainModelToViewModel()
         {
-            CreateMap<People, PeopleViewModel>();
+            CreateMap<PeopleViewModel, People>();
+            CreateMap<TodoTaskViewModel, TodoTask>();
         }
     }
 }

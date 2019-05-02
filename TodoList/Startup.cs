@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using DAL.TodoList;
-using DAL.TodoList.Repository;
+﻿using DAL.TodoList;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using TodoList.Extentions;
 
 namespace TodoList
 {
@@ -29,12 +19,9 @@ namespace TodoList
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            //string conect = Configuration.GetSection("ConnectionStrings")?.GetValue<string>("DefaultConnection");
-
             services.AddDbContext<TodoListContext>();
-            services.AddScoped<IRepository, BaseRepository>();
-            services.AddAutoMapper();
+            services.InitMapper();
+            services.AddDefaulDependency();
             services.AddMvc();
         }
 
