@@ -10,18 +10,28 @@
     <script src="~/js/ForComunication.js"></script>
 </head>
 <body class="m-1">
-<div class="card-header">
-    <p class="text-center">TodoList</p>
-    <p class="text-lg-right">Nikolas</p>
-</div>
-<div id="TaskContent" class="m-auto text-center">
 
-</div>
-<footer class="pt-4 footer fixed-bottom ">
-    
-    <div class="text-center py-3">
-        © 2018 Copyright: TodoList.com
+    <div class="card-header">
+        <p class="text-center">TodoList</p>
+        <p class="text-lg-right">Nikolas</p>
     </div>
-</footer>
+    <div class="card">
+        <div class="card-header">
+            <div class="m-auto text-center panel-body">
+                <input id="InputOrEditLine" type="text" />
+                <button id="OkButton" class="btn btn-primary">Ok</button>
+                <input id="IdTask" type="hidden" />
+            </div>
+        </div>
+        <div class="card-body">
+            <div id="TaskContent" class="m-auto text-center panel-body"></div>
+        </div>
+    </div>
+    <footer class="pt-4 footer fixed-bottom ">
+
+        <div class="text-center py-3">
+            © 2018 Copyright: TodoList.com
+        </div>
+    </footer>
 </body>
 </html>

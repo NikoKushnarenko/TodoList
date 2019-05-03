@@ -27,22 +27,22 @@ namespace DAL.TodoList.Repository
                 _context.Tasks.Remove(task);
         }
 
-        public IQueryable<TodoTask> FindAll(int id)
+        public IQueryable<TodoTask> FindAll(int peopleId)
         {
             return _context.Tasks.Include(task => task.People)
-                .Where(task => task.PeopleId == id);
+                .Where(task => task.PeopleId == peopleId);
         }
 
         public Task<TodoTask> FindByIdAsync(int id)
         {
             return _context.Tasks.Include(task => task.People)
-                .SingleOrDefaultAsync(task => task.PeopleId == id);
+                .Where(task => task.Id == id).FirstOrDefaultAsync();
         }
 
         public void Update(TodoTask param)
         {
             _context.Entry(param).State = EntityState.Modified;
-
+            _context.SaveChanges();
         }
     }
 }
