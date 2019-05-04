@@ -53,5 +53,11 @@ namespace TodoList.Controllers
             _repo.Update(model);
             return Ok();
         }
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            _repo.Delete(id);
+            return Ok();
+        }
     }
 }
