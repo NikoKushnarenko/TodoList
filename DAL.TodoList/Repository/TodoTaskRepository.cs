@@ -24,7 +24,12 @@ namespace DAL.TodoList.Repository
         {
             TodoTask task = FindByIdAsync(id).Result;
             if (task != null)
+            {
                 _context.Tasks.Remove(task);
+                _context.SaveChanges();
+            }
+                
+
         }
 
         public IQueryable<TodoTask> FindAll(int peopleId)
