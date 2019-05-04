@@ -55,7 +55,14 @@ function EditTask(idTask) {
     });
 }
 function DeleteTask(idTask) {
-    alert("Delete" + idTask);
+    $.ajax({
+        url: '/api/TodoTask',
+        type: 'DELETE',
+        data: idTask,
+        success: function (result) {
+            console.log(result);
+        }
+    });
 }
 
 function Upadte(data, peopleId) {
@@ -65,8 +72,6 @@ function Upadte(data, peopleId) {
     transferObj.desc = text;
     transferObj.complite = false;
     transferObj.peopleId = peopleId;
-    //var res = { id: data, desc: text, complite: false, peopleId: 1 };
-    //var myJSON = JSON.stringify(res);
     $.ajax({
         url: "/api/TodoTask",
         type: 'PUT',
@@ -81,6 +86,4 @@ function Upadte(data, peopleId) {
         }
     }); 
     UpdateForm();
-    //$.put("/api/TodoTask", myJSON, function (data) {}
-    //);
 }
