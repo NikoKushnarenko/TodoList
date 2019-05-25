@@ -9,36 +9,36 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAL.TodoList.Repository
 {
-    public class PeopleRepository : IPeopeRepo
+    public class UserRepository : IUserRepo
     {
         private TodoListContext _context;
-        public PeopleRepository(TodoListContext context)
+        public UserRepository(TodoListContext context)
         {
             _context = context;
         }
-        public void Add(People parem)
+        public void Add(AppUser parem)
         {
-            _context.Peoples.Add(parem);
+            _context.Users.Add(parem);
         }
 
-        public void Delete(int id)
+        public void Delete(string userId)
         {
-            People person = FindByIdAsync(id).Result;
-            if(person != null)
-                _context.Peoples.Remove(person);
+            AppUser user = FindByIdAsync(userId).Result;
+            if(user != null)
+                _context.Users.Remove(user);
         }
 
-        public IQueryable<People> FindAll()
+        public IQueryable<AppUser> FindAll()
         {
-            return _context.Peoples;
+            return _context.Users;
         }
 
-        public  Task<People> FindByIdAsync(int id)
+        public  Task<AppUser> FindByIdAsync(string id)
         {
-            return _context.Peoples.SingleOrDefaultAsync(people => people.Id == id);
+            return _context.Users.SingleOrDefaultAsync(user => user.Id == id);
         }
 
-        public void Update(People param)
+        public void Update(AppUser param)
         {
             _context.Entry(param).State = EntityState.Modified;
         }

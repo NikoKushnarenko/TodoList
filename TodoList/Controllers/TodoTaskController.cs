@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TodoList.ViewModels;
 
+
 namespace TodoList.Controllers
 {
     [Route("api/[controller]")]
@@ -33,7 +34,7 @@ namespace TodoList.Controllers
             return Ok(result);
         }
         [HttpGet("{id}")]
-        public IActionResult GetAll(int id)
+        public IActionResult GetAll(string id)
         {
             IEnumerable<TodoTask> alltask = _repo.FindAll(id);
             List<TodoTaskViewModel> res = alltask.Select(task => _mapper.Map<TodoTaskViewModel>(task)).ToList();

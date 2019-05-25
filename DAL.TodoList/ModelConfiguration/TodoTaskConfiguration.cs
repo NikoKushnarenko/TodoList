@@ -17,7 +17,7 @@ namespace DAL.TodoList.ModelConfiguration
             builder.Property(p => p.IsComplite).IsRequired();
             builder.Property(p => p.Description).IsRequired();
 
-            builder.HasOne<People>(people => people.People).WithMany(tesk => tesk.Tasks).HasForeignKey(people => people.PeopleId);
+            builder.HasOne<AppUser>(people => people.AppUser).WithMany(tesk => tesk.Tasks).HasForeignKey(people => people.AppUserId);
 
         }
     }

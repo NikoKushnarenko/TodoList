@@ -24,7 +24,7 @@ namespace TodoList.Extentions
         }
         static public void AddDefaulDependency(this IServiceCollection services)
         {
-            services.AddScoped<IPeopeRepo, PeopleRepository>();
+            services.AddScoped<IUserRepo, UserRepository>();
             services.AddScoped<ITodoTaskRepo, TodoTaskRepository>();
         }
     }

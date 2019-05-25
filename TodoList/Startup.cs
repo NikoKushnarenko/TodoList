@@ -1,6 +1,8 @@
 ﻿using DAL.TodoList;
+using DAL.TodoList.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TodoList.Extentions;
@@ -20,6 +22,7 @@ namespace TodoList
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TodoListContext>();
+            services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<TodoListContext>().AddDefaultTokenProviders();
             services.InitMapper();
             services.AddDefaulDependency();
             services.AddMvc();
@@ -39,6 +42,7 @@ namespace TodoList
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseMvc();
         }
     }

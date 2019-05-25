@@ -6,15 +6,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using DAL.TodoList.ModelConfiguration;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace DAL.TodoList
 {
-    public class TodoListContext : DbContext
+    public class TodoListContext : IdentityDbContext<AppUser>
     {
-        public DbSet<People> Peoples { get; set; }
         public DbSet<TodoTask> Tasks { get; set; }
         private IConfiguration _configuration;
-        public TodoListContext(IConfiguration configuration)
+        public TodoListContext(DbContextOptions<TodoListContext> options,IConfiguration configuration) : base(options)
         {
             _configuration = configuration;
         }
@@ -27,7 +27,6 @@ namespace DAL.TodoList
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfiguration(new PeopleConfiguration());
             modelBuilder.ApplyConfiguration(new TodoTaskConfiguration());
         }
     }

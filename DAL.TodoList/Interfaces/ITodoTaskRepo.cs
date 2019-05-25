@@ -1,13 +1,13 @@
 ﻿using DAL.TodoList.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace DAL.TodoList.Interfaces
 {
     public interface ITodoTaskRepo : IRepository<TodoTask>
     {
-        IQueryable<TodoTask> FindAll(int peopleId);
+        Task<TodoTask> FindByIdAsync(int id);
+        IQueryable<TodoTask> FindAll(string userId);
+        void Delete(int id);
     }
 }

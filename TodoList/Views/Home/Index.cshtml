@@ -1,0 +1,18 @@
+﻿@model string
+<div class="card-header">
+    <p class="text-center">TodoList</p>
+    <p class="text-lg-right">@Model</p>
+    <a class="btn btn-primary">Log out</a>
+</div>
+<div class="card">
+    <div class="card-header">
+        <div class="m-auto text-center panel-body">
+            <input id="InputOrEditLine" type="text" />
+            <button id="OkButton" class="btn btn-primary">Ok</button>
+        </div>
+    </div>
+    <div class="card-body">
+        <div id="TaskContent" class="m-auto text-center panel-body"></div>
+    </div>
+</div>
+<script src="~/js/ForComunication.js"></script>

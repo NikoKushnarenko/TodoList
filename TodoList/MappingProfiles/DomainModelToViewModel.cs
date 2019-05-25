@@ -12,7 +12,7 @@ namespace TodoList.MappingProfiles
     {
         public DomainModelToViewModel()
         {
-            CreateMap<PeopleViewModel, People>();
+            //CreateMap<PeopleViewModel, People>();
             CreateMap<TodoTaskViewModel, TodoTask>();
         }
     }

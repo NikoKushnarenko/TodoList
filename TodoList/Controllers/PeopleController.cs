@@ -13,9 +13,9 @@ namespace TodoList.Controllers
     [Route("api/[controller]")]
     public class PeopleController : Controller
     {
-        private IPeopeRepo _repo;
+        private IUserRepo _repo;
         private IMapper _mapper;
-        public PeopleController(IPeopeRepo repository, IMapper mapper)
+        public PeopleController(IUserRepo repository, IMapper mapper)
         {
             _repo = repository;
             _mapper = mapper;
@@ -30,20 +30,20 @@ namespace TodoList.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetOne([Required]int id)
+        public async Task<IActionResult> GetOne([Required]string userId)
         {
-            if (id <= 0)
+            if (string.IsNullOrEmpty(userId))
             {
                 return BadRequest("Invalid id param");
             }
-            People personGet = await _repo.FindByIdAsync(id);
+            AppUser personGet = await _repo.FindByIdAsync(userId);
             PeopleViewModel res = _mapper.Map<PeopleViewModel>(personGet);
             return Ok(res);
         } 
         [HttpPost]
         public IActionResult Add([FromBody]PeopleViewModel people)
         {
-            People res = _mapper.Map<People>(people);
+            AppUser res = _mapper.Map<AppUser>(people);
             _repo.Add(res);
             return Ok(res);
         }
