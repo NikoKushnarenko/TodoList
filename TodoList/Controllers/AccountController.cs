@@ -13,9 +13,11 @@ namespace TodoList.Controllers
     public class AccountController : Controller
     {
         private UserManager<AppUser> userManager;
-        public AccountController(UserManager<AppUser> userMgr)
+        private SignInManager<AppUser> _signInManager;
+        public AccountController(UserManager<AppUser> userMgr, SignInManager<AppUser> signinManager)
         {
             userManager = userMgr;
+            _signInManager = signinManager;
         }
         public IActionResult Index()
         {
@@ -46,6 +48,30 @@ namespace TodoList.Controllers
                 }
             }
             return View();
+        }
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Login(UserLoginViewModel userLogin)
+        {
+            if (ModelState.IsValid)
+            {
+                AppUser user = await userManager.FindByEmailAsync(userLogin.Email);
+                if(user!= null)
+                {
+                    var result = await _signInManager.PasswordSignInAsync(user, userLogin.Password, false, false);
+                    if (result.Succeeded)
+                    {
+                        return Redirect("/");
+                    }
+                }
+                ModelState.AddModelError("", "Invalid email or password");
+            }
+            return View();
+
         }
     }
 }
