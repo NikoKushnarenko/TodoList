@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using DAL.TodoList.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TodoList.ViewModels;
@@ -37,7 +38,7 @@ namespace TodoList.Controllers
                 IdentityResult res = await userManager.CreateAsync(user, newPerson.Password);
                 if (res.Succeeded)
                 {
-                    RedirectToAction("Login");
+                    RedirectToAction(nameof(Login));
                 }
                 else
                 {
@@ -55,6 +56,7 @@ namespace TodoList.Controllers
             return View();
         }
         [HttpPost]
+        //[ValidateAntiForgeryToken] - not work, try to fix it.
         public async Task<IActionResult> Login(UserLoginViewModel userLogin)
         {
             if (ModelState.IsValid)
@@ -72,6 +74,6 @@ namespace TodoList.Controllers
             }
             return View();
 
-        }
+        } 
     }
 }
