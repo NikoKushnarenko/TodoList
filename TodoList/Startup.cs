@@ -44,6 +44,7 @@ namespace TodoList
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseMvc();
+            TodoListContext.CreateAdminUser(app.ApplicationServices).Wait();
         }
     }
 }
